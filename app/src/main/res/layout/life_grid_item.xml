@@ -9,7 +9,7 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="@android:mipmap/sym_def_app_icon"
+        android:background="@mipmap/ic_launcher_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
