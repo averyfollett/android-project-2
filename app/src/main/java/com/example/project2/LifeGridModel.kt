@@ -13,13 +13,14 @@ class LifeGridModel(var context: Context) {
 
     private fun Boolean.toInt() = if (this) 1 else 0
 
+    private fun Int.toBoolean() = this == 1
+
     fun save() {
         var outputStreamWriter = OutputStreamWriter(context.openFileOutput("data.txt", Context.MODE_PRIVATE))
 
-        var i = 0
-        while (i < aliveList.size) {
-            outputStreamWriter.write(aliveList[i].toInt())
-            i++
+
+        for (item in aliveList) {
+            outputStreamWriter.write(item.toInt())
         }
 
         outputStreamWriter.close()
@@ -30,13 +31,12 @@ class LifeGridModel(var context: Context) {
         if (inputStream != null) {
             var inputStreamReader = InputStreamReader(inputStream)
             var bufferedReader = BufferedReader(inputStreamReader)
-            var receiveString = ""
             var stringBuilder = StringBuilder()
-
-            receiveString = bufferedReader.readLine()
-            stringBuilder.append("\n").append(receiveString)
-
-            Log.i("string", stringBuilder.toString())
+            var i = 0
+            while (i < aliveList.size) {
+                aliveList[i] = bufferedReader.read().toBoolean()
+                i++
+            }
         } else {
             Log.e("error", "inputStream is null")
         }

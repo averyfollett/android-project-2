@@ -92,6 +92,7 @@ class MainActivity : AppCompatActivity() {
 
         loadButton.setOnClickListener {
             lifeFragment.lifeGridModel.load()
+            lifeFragment.recyclerViewAdapter.notifyDataSetChanged()
         }
     }
 }
