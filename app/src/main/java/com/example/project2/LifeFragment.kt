@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class LifeFragment : Fragment(R.layout.fragment_life) {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerViewAdapter: LifeGridAdapter
+    lateinit var recyclerViewAdapter: LifeGridAdapter
     private lateinit var lifeGridModel: LifeGridModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
