@@ -10,13 +10,13 @@ class LifeFragment : Fragment(R.layout.fragment_life) {
 
     private lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewAdapter: LifeGridAdapter
-    private lateinit var lifeGridModel: LifeGridModel
+    lateinit var lifeGridModel: LifeGridModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = getView()?.findViewById<RecyclerView>(R.id.lifeRecyclerView) ?: recyclerView
-        lifeGridModel = LifeGridModel()
+        lifeGridModel = LifeGridModel(view.context)
 
         initView(view)
         lifeGridModel.init()

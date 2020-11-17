@@ -1,12 +1,48 @@
 package com.example.project2
 
+import android.content.Context
 import android.util.Log
+import java.io.*
+import java.lang.StringBuilder
 
-class LifeGridModel {
+class LifeGridModel(var context: Context) {
 
     private var aliveList = mutableListOf<Boolean>()
     private var width = 20
     private var height = 20
+
+    private fun Boolean.toInt() = if (this) 1 else 0
+
+    fun save() {
+        var outputStreamWriter = OutputStreamWriter(context.openFileOutput("data.txt", Context.MODE_PRIVATE))
+
+        var i = 0
+        while (i < aliveList.size) {
+            outputStreamWriter.write(aliveList[i].toInt())
+            i++
+        }
+
+        outputStreamWriter.close()
+    }
+
+    fun load() {
+        var inputStream = context.openFileInput("data.txt")
+        if (inputStream != null) {
+            var inputStreamReader = InputStreamReader(inputStream)
+            var bufferedReader = BufferedReader(inputStreamReader)
+            var receiveString = ""
+            var stringBuilder = StringBuilder()
+
+            receiveString = bufferedReader.readLine()
+            stringBuilder.append("\n").append(receiveString)
+
+            Log.i("string", stringBuilder.toString())
+        } else {
+            Log.e("error", "inputStream is null")
+        }
+
+        inputStream.close()
+    }
 
     fun init() {
         var i = 0

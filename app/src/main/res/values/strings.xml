@@ -6,4 +6,6 @@
     <string name="start_button_text">Start</string>
     <string name="alive_color_text">Alive Color</string>
     <string name="dead_color_text">Dead Color</string>
+    <string name="save_button_text">Save</string>
+    <string name="load_button_text">Load</string>
 </resources>

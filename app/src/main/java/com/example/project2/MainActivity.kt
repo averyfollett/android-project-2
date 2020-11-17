@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var startButton: Button
     private lateinit var aliveColorButton: Button
     private lateinit var deadColorButton: Button
+    private lateinit var saveButton: Button
+    private lateinit var loadButton: Button
 
     private var started = false
     private lateinit var handler: Handler
@@ -36,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         startButton = findViewById(R.id.startButton)
         aliveColorButton = findViewById(R.id.aliveColorButton)
         deadColorButton = findViewById(R.id.deadColorButton)
+        saveButton = findViewById(R.id.saveButton)
+        loadButton = findViewById(R.id.loadButton)
 
         handler = Handler()
 
@@ -80,6 +84,14 @@ class MainActivity : AppCompatActivity() {
                 deadColorButton.backgroundTintList = AppCompatResources.getColorStateList(this, colorArray[deadColor])
                 lifeFragment.recyclerViewAdapter.notifyDataSetChanged()
             }
+        }
+
+        saveButton.setOnClickListener {
+            lifeFragment.lifeGridModel.save()
+        }
+
+        loadButton.setOnClickListener {
+            lifeFragment.lifeGridModel.load()
         }
     }
 }
