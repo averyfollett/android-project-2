@@ -20,14 +20,20 @@ class LifeGridAdapter(var context: Context, var gridModel: LifeGridModel): Recyc
 
     override fun onBindViewHolder(holder: LifeViewHolder, position: Int) {
         if (gridModel.getAliveStatus(position)) {
-            holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, R.color.black)
+            holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, R.color.purple_500)
         } else {
-            holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, R.color.teal_700)
+            holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, R.color.black)
         }
 
         holder.button.setOnClickListener {
-            holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, R.color.black)
-            gridModel.setCellAlive(position)
+            if (gridModel.getAliveStatus(position)) { //if cell is already alive
+                holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, R.color.black)
+                gridModel.setCellDead(position)
+            } else
+            {
+                holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, R.color.purple_500)
+                gridModel.setCellAlive(position)
+            }
         }
     }
 

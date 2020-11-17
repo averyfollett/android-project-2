@@ -1,7 +1,6 @@
 package com.example.project2
 
 import android.util.Log
-import androidx.appcompat.content.res.AppCompatResources
 
 class LifeGridModel {
 
@@ -30,8 +29,7 @@ class LifeGridModel {
     }
 
     fun nextGeneration() {
-        var i = 0
-        for (item in aliveList) {
+        for ((i, item) in aliveList.withIndex()) {
             val neighborArray = getNeighbors(i)
             var neighborsAlive = 0
             for (neighbor in neighborArray) {
@@ -52,14 +50,13 @@ class LifeGridModel {
                     setCellDead(i)
                 }
             }
-            i++
         }
     }
 
 
     fun setCellAlive(position: Int) {
         aliveList[position] = true
-        Log.i("set", "alive")
+        //Log.i("set", "alive")
     }
 
     fun setCellDead(position: Int) {
@@ -71,7 +68,7 @@ class LifeGridModel {
         val coordX = getXCoordinateFromID(id)
         val coordY = getYCoordinateFromID(id)
 
-        var neighborArray = Array<Int>(8) { 0 }
+        val neighborArray = Array(8) { 0 }
 
         neighborArray[0] = getIDFromCoordinates(if (coordX - 1 < 0) coordX + width - 1 else coordX - 1, if (coordY - 1 < 0) coordY + height - 1 else coordY - 1)
         neighborArray[1] = getIDFromCoordinates(coordX, if (coordY - 1 < 0) coordY + height - 1 else coordY - 1)
