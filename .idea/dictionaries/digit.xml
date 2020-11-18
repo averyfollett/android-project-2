@@ -2,6 +2,7 @@
   <dictionary name="digit">
     <words>
       <w>coord</w>
+      <w>lateinit</w>
     </words>
   </dictionary>
 </component>
