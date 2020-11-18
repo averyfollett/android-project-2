@@ -7,7 +7,7 @@ import java.lang.StringBuilder
 
 class LifeGridModel(var context: Context) {
 
-    private var aliveList = mutableListOf<Boolean>()
+    var aliveList = mutableListOf<Boolean>()
     private var width = 20
     private var height = 20
 

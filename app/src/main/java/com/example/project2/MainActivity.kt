@@ -1,5 +1,6 @@
 package com.example.project2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var deadColorButton: Button
     private lateinit var saveButton: Button
     private lateinit var loadButton: Button
+    private lateinit var cloneButton: Button
 
     private var started = false
     private lateinit var handler: Handler
@@ -34,12 +36,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         lifeFragment = supportFragmentManager.findFragmentById(R.id.recyclerViewFragment) as LifeFragment
+        if (intent.getBooleanArrayExtra("ALIVE_LIST") != null) {
+            lifeFragment.lifeGridModel.aliveList = intent.getBooleanArrayExtra("ALIVE_LIST")!!.toMutableList()
+        }
         nextButton = findViewById(R.id.nextButton)
         startButton = findViewById(R.id.startButton)
         aliveColorButton = findViewById(R.id.aliveColorButton)
         deadColorButton = findViewById(R.id.deadColorButton)
         saveButton = findViewById(R.id.saveButton)
         loadButton = findViewById(R.id.loadButton)
+        cloneButton = findViewById(R.id.cloneButton)
 
         handler = Handler()
 
@@ -93,6 +99,12 @@ class MainActivity : AppCompatActivity() {
         loadButton.setOnClickListener {
             lifeFragment.lifeGridModel.load()
             lifeFragment.recyclerViewAdapter.notifyDataSetChanged()
+        }
+
+        cloneButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("ALIVE_LIST", lifeFragment.lifeGridModel.aliveList.toBooleanArray())
+            startActivity(intent)
         }
     }
 }
