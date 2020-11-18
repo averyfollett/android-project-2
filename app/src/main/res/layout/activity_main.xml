@@ -70,6 +70,13 @@
             android:layout_weight="1"
             android:backgroundTint="@color/black"
             android:text="@string/dead_color_text" />
+
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/reset_button_text" />
     </LinearLayout>
 
     <LinearLayout

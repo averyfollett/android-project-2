@@ -35,4 +35,12 @@ class LifeFragment : Fragment(R.layout.fragment_life) {
         recyclerViewAdapter.notifyDataSetChanged()
     }
 
+    fun update() {
+        recyclerViewAdapter.notifyDataSetChanged()
+    }
+
+    fun reset() {
+        lifeGridModel.reset()
+    }
+
 }

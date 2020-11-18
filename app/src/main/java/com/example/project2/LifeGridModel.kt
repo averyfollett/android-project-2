@@ -15,6 +15,11 @@ class LifeGridModel(var context: Context) {
 
     private fun Int.toBoolean() = this == 1
 
+    fun reset() {
+        aliveList.clear()
+        init()
+    }
+
     fun save() {
         var outputStreamWriter = OutputStreamWriter(context.openFileOutput("data.txt", Context.MODE_PRIVATE))
 
