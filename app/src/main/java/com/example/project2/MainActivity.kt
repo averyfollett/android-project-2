@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var saveButton: Button
     private lateinit var loadButton: Button
     private lateinit var cloneButton: Button
+    private lateinit var stopButton: Button
 
     private var started = false
     private lateinit var handler: Handler
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
         nextButton = findViewById(R.id.nextButton)
         startButton = findViewById(R.id.startButton)
+        stopButton = findViewById(R.id.stopButton)
         aliveColorButton = findViewById(R.id.aliveColorButton)
         deadColorButton = findViewById(R.id.deadColorButton)
         saveButton = findViewById(R.id.saveButton)
@@ -60,6 +62,10 @@ class MainActivity : AppCompatActivity() {
                 handler.postDelayed(runnable, 1000)
             }
             handler.postDelayed(runnable, 1000)
+        }
+
+        stopButton.setOnClickListener {
+            handler.removeCallbacks(runnable)
         }
 
         aliveColorButton.setOnClickListener {
