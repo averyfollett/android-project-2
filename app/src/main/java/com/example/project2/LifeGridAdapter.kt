@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +24,9 @@ class LifeGridAdapter(var context: Context, var gridModel: LifeGridModel): Recyc
     override fun onBindViewHolder(holder: LifeViewHolder, position: Int) {
         if (gridModel.getAliveStatus(position)) {
             holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, aliveColor)
+            var pulse = AnimationUtils.loadAnimation(context, R.anim.pulse)
+            pulse.repeatCount = Animation.INFINITE
+            holder.button.startAnimation(pulse)
         } else {
             holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, deadColor)
         }
@@ -30,10 +35,14 @@ class LifeGridAdapter(var context: Context, var gridModel: LifeGridModel): Recyc
             if (gridModel.getAliveStatus(position)) { //if cell is already alive
                 holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, deadColor)
                 gridModel.setCellDead(position)
+                holder.button.clearAnimation()
             } else
             {
                 holder.button.backgroundTintList = AppCompatResources.getColorStateList(context, aliveColor)
                 gridModel.setCellAlive(position)
+                var pulse = AnimationUtils.loadAnimation(context, R.anim.pulse)
+                pulse.repeatCount = Animation.INFINITE
+                holder.button.startAnimation(pulse)
             }
         }
     }
